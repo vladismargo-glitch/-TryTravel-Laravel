@@ -2,9 +2,15 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\TourCatalogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect('/index.html'))->name('home');
+Route::get('/tours.html', [TourCatalogController::class, 'index'])->name('tours.index');
+Route::get('/hot-tours.html', [TourCatalogController::class, 'index'])
+    ->defaults('section', 'hot')->name('tours.hot');
+Route::get('/newyear-tours.html', [TourCatalogController::class, 'index'])
+    ->defaults('section', 'newyear')->name('tours.newyear');
 
 Route::middleware('guest')->group(function () {
     Route::view('/register.html', 'register')->name('register');

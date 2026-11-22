@@ -43,27 +43,13 @@
         <div class="hero-wrapper">
             <div class="hero-content">
                 <h1>Открой мир премиум путешествий</h1>
-                <div class="search-tabs">
-                    <button class="search-tab active">Отели</button>
-                    <button class="search-tab">Путешествия</button>
-                    <button class="search-tab">Туры</button>
-                </div>
                 <div class="search-container">
-                    <form class="search-form">
+                    <form class="search-form tour-home-search" action="tours.html" method="get" role="search">
                         <div class="form-group">
-                            <input type="text" placeholder="Название курорт/отель">
+                            <input type="search" name="q" maxlength="100" aria-label="Название тура, курорт или страна"
+                                placeholder="Название тура, курорт или страна">
                         </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="дд.мм.гггг - дд.мм.гггг">
-                        </div>
-                        <div class="form-group">
-                            <select>
-                                <option value="" disabled selected>1 взрослый 0 детей</option>
-                                <option>2 взрослых 0 детей</option>
-                                <option>2 взрослых 1 ребенок</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="search-btn">Найти</button>
+                        <button type="submit" class="search-btn">Найти тур</button>
                     </form>
                 </div>
             </div>

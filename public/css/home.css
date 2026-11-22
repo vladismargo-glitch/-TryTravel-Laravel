@@ -656,3 +656,8 @@
 
 }
 
+
+.search-form.tour-home-search { grid-template-columns: minmax(0, 1fr) auto; }
+@media (max-width: 540px) {
+    .search-form.tour-home-search { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,34 @@
+.catalog-nav-current {
+    background: #e3f2fd;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.catalog-search {
+    max-width: 1200px;
+    margin: 18px auto 0;
+    padding: 0 10px;
+}
+
+.catalog-search-form label { display: block; margin-bottom: 8px; font-weight: 600; }
+.catalog-search-fields { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+
+.catalog-search-fields input {
+    flex: 1 1 260px;
+    min-width: 0;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #b7c5d4;
+    border-radius: 6px;
+    background: white;
+    color: #222;
+    font: inherit;
+}
+
+.catalog-search-fields .tour-select-btn { width: auto; margin: 0; }
+.catalog-search a, .tours-pagination a, .catalog-description summary { color: #174b80; }
+.catalog-result-count { margin-top: 10px; }
+.catalog-empty { padding: 26px 0; }
+.catalog-description { margin-top: 14px; }
+.catalog-description summary { cursor: pointer; }
+.catalog-description p { margin-top: 8px; }
