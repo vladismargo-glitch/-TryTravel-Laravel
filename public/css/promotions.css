@@ -1,0 +1,235 @@
+.promotions-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+.promotions-header h1 {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.promotion-filters {
+    display: inline-flex;
+    gap: 0;
+    background: #e3f2fd;
+    border: none;
+    border-radius: 50px;
+    padding: 3px 4px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(100, 181, 246, 0.2);
+    width: fit-content;
+}
+
+.promotion-filter {
+    padding: 10px 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    font-style: italic;
+    border-radius: 50px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.promotion-filter.active {
+    background: white;
+    border: none;
+    color: #333;
+    font-weight: normal;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+.promotion-filter:hover:not(.active) {
+    color: #1976d2;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.promotion-filter:active {
+    transform: scale(0.98);
+}
+
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.promotion-card {
+    background: white;
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.promotion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.promotion-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    margin-top: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+.promotion-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    background: white;
+    margin-top: -20px;
+    border-radius: 0 0 12px 12px;
+}
+
+.promotion-card h3 {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.promotion-card p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: auto;
+    line-height: 1.5;
+}
+
+.promotion-expiry {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #000;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.promotion-expiry img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.promotion-btn {
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-style: normal;
+    width: auto;
+    align-self: flex-start;
+}
+
+.promotion-btn:hover {
+    background: #555;
+}
+
+.promotions-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.pagination-btn {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.pagination-btn:hover {
+    background: #f0f0f0;
+}
+
+.pagination-btn.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 968px) {
+    .promotions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .promotions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promotion-filters {
+        flex-wrap: wrap;
+    }
+
+    .promotions-header h1 {
+        font-size: 28px;
+    }
+
+    .promotion-filters {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+    }
+
+    .promotion-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .promotion-filter {
+        padding: 10px 18px;
+        font-size: 15px;
+    }
+
+}
+

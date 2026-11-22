@@ -1,0 +1,178 @@
+﻿/* Стили страниц входа и регистрации */
+
+.auth-section {
+    padding: 60px 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+}
+
+.auth-container {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.auth-box {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 45px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+    font-family: "Philosopher", serif;
+    font-style: italic;
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-label {
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+}
+
+.auth-input {
+    padding: 14px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    background: #f9fafb;
+    color: #333;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.auth-input:focus {
+    outline: none;
+    background: white;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px #e3f2fd;
+}
+
+.auth-input::placeholder { color: #999; }
+
+.auth-password-wrap { position: relative; }
+
+.auth-password-wrap .auth-input { padding-right: 90px; }
+
+.auth-toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #007bff;
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.auth-toggle-password:hover { text-decoration: underline; }
+
+.auth-forgot {
+    font-size: 14px;
+    font-style: italic;
+    color: #333;
+    margin-top: 2px;
+}
+
+.auth-forgot a { color: #007bff; text-decoration: none; }
+.auth-forgot a:hover { text-decoration: underline; }
+
+.auth-agree {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    cursor: pointer;
+    margin: 6px 0;
+}
+
+.auth-agree input {
+    width: 16px;
+    height: 16px;
+    accent-color: #007bff;
+    margin-top: 3px;
+    flex: 0 0 auto;
+}
+
+.auth-agree a { color: #007bff; }
+
+.auth-submit {
+    padding: 15px 40px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s, color 0.3s;
+}
+
+.auth-submit:hover { background: #fff; color: #000; }
+.auth-submit:active { transform: translateY(1px); }
+
+.auth-alt-text {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+}
+
+.auth-link { color: #007bff; text-decoration: none; font-weight: 600; }
+.auth-link:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .auth-section { padding: 30px 15px; }
+    .auth-box { padding: 32px 20px; }
+    .auth-title { font-size: 24px; }
+}
+/* Хлебные крошки: текущая страница не подсвечивается */
+.breadcrumbs .current {
+    color: #666;
+}
+
+/* Убираем белую полосу под хлебными крошками: фон страницы продолжает секцию */
+body:has(.auth-section) {
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+}
+
+body:has(.auth-section) .breadcrumbs {
+    background: transparent;
+    padding-top: 0;
+}

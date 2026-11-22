@@ -1,0 +1,591 @@
+.hot-tours-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+.hot-tours-header h1 {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.hot-tours-banners {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    margin-bottom: 30px;
+    height: 330px;
+}
+
+.banner-large {
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.banner-large-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 12px;
+}
+
+.banner-large-content {
+    padding: 40px;
+    color: white;
+    z-index: 2;
+    position: relative;
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-large-content h2 {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 28px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.banner-large-content p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+}
+
+.banners-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.banners-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex: 1.8;
+    min-height: 0;
+}
+
+.banner-small {
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-long {
+    flex: 1;
+    min-height: 0;
+}
+
+.banners-horizontal .banner-medium {
+    flex: 1.5;
+    min-height: 0;
+}
+
+.banners-horizontal .banner-short {
+    flex: 1;
+    min-height: 0;
+}
+
+.banner-small-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 12px;
+}
+
+.banner-small-content {
+    padding: 30px;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.banner-small-content h3 {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.banner-small-content p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.banner-text-black h3,
+.banner-text-black p {
+    color: #000000;
+}
+
+.banner-text-black {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hot-tours-filters {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.destination-filters {
+    display: inline-flex;
+    gap: 0;
+    background: #e3f2fd;
+    border-radius: 50px;
+    padding: 3px 4px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(100, 181, 246, 0.2);
+    width: fit-content;
+}
+
+.destination-filter {
+    padding: 10px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    font-style: italic;
+    border-radius: 50px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.destination-filter.active {
+    background: white;
+    border: none;
+    color: #333;
+    font-weight: normal;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.destination-filter:hover:not(.active) {
+    color: #1976d2;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.origin-filter {
+    display: flex;
+    align-items: center;
+}
+
+.origin-select {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.tours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.tour-card {
+    background: white;
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tour-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.tour-image {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px 0 20px 20px;
+    position: relative;
+    z-index: 0;
+    flex-shrink: 0;
+    display: block;
+}
+
+.tour-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    background: white;
+    margin-left: 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.tour-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.tour-info-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+
+.tour-location {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.tour-rating {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.tour-rating img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.tour-hotel {
+    font-family: 'Philosopher', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.tour-departure {
+    display: flex;
+    gap: 15px;
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tour-departure span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.departure-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.tour-expiry {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #000;
+}
+
+.tour-pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    min-width: 250px;
+    margin-top: 20px;
+}
+
+.tour-price-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.price-type-btn {
+    padding: 8px 16px;
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: normal;
+}
+
+.price-type-btn.active {
+    background: #333;
+    color: white;
+    border: none;
+}
+
+.price-type-btn:hover:not(.active) {
+    background: #555;
+}
+
+.tour-price-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.price-label {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #000;
+}
+
+.price-value {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.tour-cashback {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tour-cashback .cashback-italic {
+    font-style: italic;
+    color: #000;
+}
+
+.tour-select-btn {
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-style: normal;
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+}
+
+.tour-select-btn:hover {
+    background: #555;
+}
+
+.tours-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.pagination-btn {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.pagination-btn:hover {
+    background: #f0f0f0;
+}
+
+.pagination-btn.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 968px) {
+    .hot-tours-banners {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .banner-large {
+        height: 300px;
+    }
+
+
+    .banners-right {
+        flex-direction: column;
+    }
+
+    .banner-small {
+        min-height: 200px;
+    }
+
+
+    .banners-horizontal {
+        flex: 0 0 auto;
+        min-height: 200px;
+    }
+
+    .hot-tours-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tour-card {
+        flex-direction: column;
+    }
+
+    .tour-image {
+        width: calc(100% - 40px);
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+        margin: 20px 20px 0 20px;
+    }
+
+    .tour-content {
+        margin-left: 0;
+        border-radius: 0 0 12px 12px;
+        margin-top: -20px;
+    }
+
+    .tour-header {
+        flex-direction: column;
+    }
+
+    .tour-pricing {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .tour-select-btn {
+        width: 100%;
+    }
+
+    .destination-filters {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .destination-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .banners-right {
+        flex-direction: column;
+    }
+
+    .hot-tours-header h1 {
+        font-size: 28px;
+    }
+
+    .banner-large-content h2 {
+        font-size: 24px;
+    }
+
+    .banner-small-content h3 {
+        font-size: 20px;
+    }
+
+    .banners-horizontal {
+        flex-direction: column;
+    }
+
+
+    .banners-horizontal .banner-medium,
+    .banners-horizontal .banner-short {
+        flex: 0 0 auto;
+        min-height: 200px;
+    }
+
+    .banner-small-content {
+        padding: 24px;
+    }
+
+}
+
