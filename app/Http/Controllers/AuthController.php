@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Closure;
+use App\Rules\BcryptPassword;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,14 +22,7 @@ class AuthController extends Controller
             'firstName' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:254', 'unique:users,email'],
             'phone' => ['required', 'string', 'max:32', 'regex:/^[+0-9][0-9 ().-]{5,31}$/'],
-            'password' => ['required', 'string', 'min:8', function (string $attribute, mixed $value, Closure $fail): void {
-                if (is_string($value) && strlen($value) > 72) {
-                    $fail('Пароль слишком длинный.');
-                }
-                if (is_string($value) && str_contains($value, "\0")) {
-                    $fail('Пароль содержит недопустимый символ.');
-                }
-            }],
+            'password' => ['required', 'string', 'min:8', new BcryptPassword],
             'agree' => ['accepted'],
         ], [
             'lastName.required' => 'Укажи фамилию.',
