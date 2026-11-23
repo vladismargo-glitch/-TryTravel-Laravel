@@ -64,3 +64,19 @@
 .favorite-button span { font-size: 19px; line-height: 1; }
 .favorite-button:hover, .favorite-button.is-saved { background: #e3f2fd; border-color: #174b80; }
 .favorite-status { margin: 0 0 12px; color: #174b80; font-style: normal; }
+
+.tour-select-btn.booking-link {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px;
+    min-height: 44px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.booking-link:focus-visible {
+    outline: 2px solid #174b80;
+    outline-offset: 3px;
+}

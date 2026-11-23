@@ -34,7 +34,7 @@
                 <li><a href="newyear-tours.html">Новогодние туры</a></li>
                 <li><a href="about.html">О нас</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="#" class="favorites-icon">Избранное</a></li>
+                <li><a href="favorites.html" class="favorites-icon">Избранное</a></li>
             </ul>
         </div>
     </nav>
@@ -66,12 +66,38 @@
             </a>
         </div>
 
-        <div class="account-empty-state">
-            <div class="empty-state-box">
-                <p class="empty-state-text">У вас пока нет заявок на бронирование</p>
-                <p class="empty-state-subtext">Отличный момент для планирования отпуска!</p>
+        @if (session('booking_status'))
+            <p class="booking-status" role="status">{{ session('booking_status') }}</p>
+        @endif
+
+        @if ($bookings->isEmpty())
+            <div class="account-empty-state">
+                <div class="empty-state-box">
+                    <p class="empty-state-text">У вас пока нет заявок на бронирование</p>
+                    <a href="{{ route('tours.index') }}">Перейти в каталог</a>
+                </div>
             </div>
-        </div>
+        @else
+            <ul class="booking-list">
+                @foreach ($bookings as $booking)
+                    <li>
+                        <details class="booking-entry">
+                            <summary>
+                                <strong>{{ $booking->title }}</strong>
+                                <span>Заявка №{{ $booking->booking_id }} от {{ \Illuminate\Support\Carbon::parse($booking->created_at)->format('d.m.Y') }}</span>
+                                <span>{{ $booking->checking ? 'Подтверждена' : 'Ожидает подтверждения' }}</span>
+                            </summary>
+                            <div>
+                                <p>{{ $booking->country }}, {{ $booking->destination }}</p>
+                                <p>Вылет: {{ $booking->departure_city }}, {{ \Illuminate\Support\Carbon::parse($booking->departure_date)->format('d.m.Y') }}</p>
+                                <p>Ночей: {{ $booking->nights }} · Питание: {{ $booking->meal_plan }}</p>
+                            </div>
+                        </details>
+                    </li>
+                @endforeach
+            </ul>
+            @include('catalog.pagination', ['tours' => $bookings, 'paginationLabel' => 'Страницы истории заявок'])
+        @endif
     </section>
 
     <section class="newsletter-section">

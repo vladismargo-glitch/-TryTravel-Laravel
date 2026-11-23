@@ -1,5 +1,5 @@
 @if ($tours->hasPages())
-    <nav class="tours-pagination" aria-label="Страницы списка туров">
+    <nav class="tours-pagination" aria-label="{{ $paginationLabel ?? 'Страницы списка туров' }}">
         @if ($tours->onFirstPage())
             <span>Назад</span>
         @else

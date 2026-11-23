@@ -148,3 +148,11 @@
 
 }
 
+.booking-list { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 12px; }
+.booking-entry { padding: 14px 18px; border: 1px solid #d4dfe9; border-radius: 8px; }
+.booking-entry summary { cursor: pointer; overflow-wrap: anywhere; }
+.booking-entry summary span { display: block; margin: 5px 0 0 16px; }
+.booking-entry div { margin: 12px 0 0 16px; }
+.booking-entry p { margin: 4px 0; }
+.booking-status { margin: 16px 0; color: #174b80; }
+.personal-account-section .tours-pagination { display: flex; flex-wrap: wrap; gap: 14px; }

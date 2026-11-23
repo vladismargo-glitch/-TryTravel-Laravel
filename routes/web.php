@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TourCatalogController;
@@ -33,7 +34,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'auth.session'])->group(function () {
-    Route::view('/personal-account.html', 'account')->name('account');
+    Route::get('/personal-account.html', [BookingController::class, 'index'])->name('account');
+    Route::get('/tours/{tourId}/booking', [BookingController::class, 'create'])
+        ->whereNumber('tourId')->name('bookings.create');
+    Route::post('/tours/{tourId}/booking', [BookingController::class, 'store'])
+        ->whereNumber('tourId')->name('bookings.store');
     Route::get('/favorites.html', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites/{tourId}', [FavoriteController::class, 'store'])
         ->whereNumber('tourId')->name('favorites.store');

@@ -34,6 +34,11 @@
                     <div class="price-label">Цена</div>
                     <div class="price-value">{{ number_format((float) $tour->price, fmod((float) $tour->price, 1) ? 2 : 0, ',', ' ') }} ₽</div>
                 </div>
+                @if (\App\Queries\TourCards::isBookable($tour))
+                    <a class="tour-select-btn booking-link" href="{{ route('bookings.create', ['tourId' => $tour->tour_id]) }}">
+                        Оформить заявку
+                    </a>
+                @endif
                 <form class="favorite-form" method="post"
                     action="{{ route($tour->is_favorite ? 'favorites.destroy' : 'favorites.store', ['tourId' => $tour->tour_id]) }}">
                     @csrf

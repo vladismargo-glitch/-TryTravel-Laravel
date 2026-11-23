@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class TourCards
 {
+    public static function isBookable(object $tour): bool
+    {
+        return $tour->archived_at === null && $tour->departure_date >= today('Asia/Tomsk')->toDateString();
+    }
+
     public static function query(): Builder
     {
         $ratings = DB::table('tour_reviews')
