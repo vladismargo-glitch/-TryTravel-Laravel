@@ -54,13 +54,20 @@
         @endif
 
         <section class="catalog-search" aria-label="Поиск по каталогу">
+            @include('catalog.favorite-status')
             <form class="catalog-search-form" action="{{ $searchUrl }}" method="get" role="search">
                 <label for="catalog-query">Название тура, курорт или страна</label>
                 <div class="catalog-search-fields">
                     <input type="search" id="catalog-query" name="q" value="{{ $search }}"
                         maxlength="100" placeholder="Например, Пхукет">
-                    <button type="submit" class="tour-select-btn">Найти</button>
-                    @if ($search !== '')
+                    <select id="catalog-sort" name="sort" aria-label="Сортировка туров">
+                        <option value="">По умолчанию</option>
+                        @foreach ($sortOptions as $value => $label)
+                            <option value="{{ $value }}" @selected($sort === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="tour-select-btn">Применить</button>
+                    @if ($search !== '' || $sort !== '')
                         <a href="{{ $searchUrl }}">Сбросить</a>
                     @endif
                 </div>
@@ -78,19 +85,7 @@
             @endforelse
         </div>
 
-        @if ($tours->hasPages())
-            <nav class="tours-pagination" aria-label="Страницы каталога">
-                @if ($tours->onFirstPage())
-                    <span>Назад</span>
-                @else
-                    <a href="{{ $tours->previousPageUrl() }}" rel="prev">Назад</a>
-                @endif
-                <span>Страница {{ $tours->currentPage() }} из {{ $tours->lastPage() }}</span>
-                @if ($tours->hasMorePages())
-                    <a href="{{ $tours->nextPageUrl() }}" rel="next">Далее</a>
-                @endif
-            </nav>
-        @endif
+        @include('catalog.pagination')
     </main>
 
     <section class="newsletter-section">

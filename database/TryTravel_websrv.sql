@@ -133,6 +133,25 @@ CREATE TABLE IF NOT EXISTS promotion_tours (
         REFERENCES tours (tour_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS tour_reviews (
+    review_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    tour_id BIGINT UNSIGNED NOT NULL,
+    user_id BIGINT UNSIGNED NOT NULL,
+    rating TINYINT UNSIGNED NOT NULL,
+    content TEXT NOT NULL,
+    status ENUM('pending', 'published', 'rejected') NOT NULL DEFAULT 'pending',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_tour_review_user UNIQUE (tour_id, user_id),
+    KEY ix_tour_reviews_user (user_id),
+    KEY ix_tour_reviews_rating (status, tour_id, rating),
+    CONSTRAINT fk_tour_reviews_tour FOREIGN KEY (tour_id)
+        REFERENCES tours (tour_id) ON DELETE CASCADE,
+    CONSTRAINT fk_tour_reviews_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id) ON DELETE CASCADE,
+    CONSTRAINT ck_tour_reviews_rating CHECK (rating BETWEEN 1 AND 5)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
 START TRANSACTION;
 INSERT INTO roles (role_id, name)
 VALUES (1, 'Пользователь'), (2, 'Администратор')

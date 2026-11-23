@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TryTravel - Избранное</title>
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="{{ asset('css/hot-tours.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tour-search.css') }}">
     <link rel="stylesheet" href="css/favorites.css">
 </head>
 <body>
@@ -65,12 +67,26 @@
             </a>
         </div>
 
-        <div class="favorites-empty-state">
-            <div class="empty-state-box">
-                <p class="empty-state-text">Сохраните поездки, которые вам понравились</p>
-                <p class="empty-state-subtext">Нажмите на иконку <img src="images/Serdechko.png" alt="сердце" class="heart-icon-img"> в карточке поездки, и она появится на этой странице!</p>
-            </div>
+        <div class="catalog-search">
+            @include('catalog.favorite-status')
         </div>
+
+        @if ($tours->isEmpty())
+            <div class="favorites-empty-state">
+                <div class="empty-state-box">
+                    <p class="empty-state-text">В избранном пока нет туров</p>
+                    <p class="empty-state-subtext">Нажмите «В избранное» в карточке понравившегося тура.</p>
+                    <a href="{{ route('tours.index') }}">Перейти в каталог</a>
+                </div>
+            </div>
+        @else
+            <div class="tours-grid">
+                @foreach ($tours as $tour)
+                    @include('catalog.card', ['tour' => $tour, 'sort' => ''])
+                @endforeach
+            </div>
+            @include('catalog.pagination')
+        @endif
     </section>
 
     <section class="newsletter-section">

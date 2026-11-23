@@ -25,6 +25,17 @@
     font: inherit;
 }
 
+.catalog-search-fields select {
+    max-width: 100%;
+    padding: 12px;
+    border: 1px solid #b7c5d4;
+    border-radius: 6px;
+    background: white;
+    color: #222;
+    font: inherit;
+}
+
+.catalog-rating { margin: 0 0 8px; font-size: 14px; }
 .catalog-search-fields .tour-select-btn { width: auto; margin: 0; }
 .catalog-search a, .tours-pagination a, .catalog-description summary { color: #174b80; }
 .catalog-result-count { margin-top: 10px; }
@@ -32,3 +43,24 @@
 .catalog-description { margin-top: 14px; }
 .catalog-description summary { cursor: pointer; }
 .catalog-description p { margin-top: 8px; }
+
+.favorite-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    max-width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #b7c5d4;
+    border-radius: 6px;
+    background: white;
+    color: #174b80;
+    font: inherit;
+    font-size: 14px;
+    font-style: normal;
+    cursor: pointer;
+}
+
+.favorite-button span { font-size: 19px; line-height: 1; }
+.favorite-button:hover, .favorite-button.is-saved { background: #e3f2fd; border-color: #174b80; }
+.favorite-status { margin: 0 0 12px; color: #174b80; font-style: normal; }
