@@ -1,5 +1,6 @@
 .auth-feedback { margin: 0 0 1rem; line-height: 1.5; }
 .auth-error { color: #a12525; padding-left: 1.2rem; }
+.auth-input[aria-invalid="true"] { border-color: #a12525; }
 .booking-summary { margin: 16px 0; text-align: left; }
 .booking-summary dt { margin-top: 8px; font-weight: 600; }
 .booking-summary dd { margin: 0; }

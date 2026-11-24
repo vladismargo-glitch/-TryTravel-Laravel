@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProfileController;
@@ -47,7 +48,16 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         ->whereNumber('tourId')->name('favorites.store');
     Route::delete('/favorites/{tourId}', [FavoriteController::class, 'destroy'])
         ->whereNumber('tourId')->name('favorites.destroy');
-    Route::view('/documents.html', 'documents')->name('documents');
+    Route::middleware('cache.headers:private;no_store')->controller(DocumentController::class)->group(function () {
+        Route::get('/documents.html', 'index')->name('documents');
+        Route::get('/documents/new', 'create')->name('documents.create');
+        Route::post('/documents', 'store')->name('documents.store');
+        Route::get('/documents/{documentId}/edit', 'edit')->whereNumber('documentId')->name('documents.edit');
+        Route::patch('/documents/{documentId}', 'update')->whereNumber('documentId')->name('documents.update');
+        Route::get('/documents/{documentId}/delete', 'confirmDelete')
+            ->whereNumber('documentId')->name('documents.confirm-delete');
+        Route::delete('/documents/{documentId}', 'destroy')->whereNumber('documentId')->name('documents.destroy');
+    });
     Route::view('/logout.html', 'logout')->name('logout');
     Route::post('/logout.html', [AuthController::class, 'logout'])->name('logout.submit');
 });

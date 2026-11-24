@@ -35,7 +35,7 @@
                 <li><a href="newyear-tours.html">Новогодние туры</a></li>
                 <li><a href="about.html">О нас</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="#" class="favorites-icon">Избранное</a></li>
+                <li><a href="{{ route('favorites.index') }}" class="favorites-icon">Избранное</a></li>
             </ul>
         </div>
     </nav>
@@ -70,61 +70,44 @@
                 </div>
             </div>
 
-            <div class="passport-section">
-                <h3 class="passport-title">Паспорт РФ</h3>
-                <div class="passport-form">
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label>ФИО</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Пол</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Дата рождения</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Номер и серия</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                    </div>
+            <section class="document-section">
+                <div class="document-header">
+                    <h3 class="profile-section-title">Мои документы</h3>
+                    <a class="add-button" href="{{ route('documents.create') }}">Добавить документ</a>
                 </div>
-            </div>
 
-            <div class="passport-section">
-                <h3 class="passport-title">Паспорт РФ</h3>
-                <div class="passport-form">
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label>ФИО</label>
-                            <input type="text" placeholder="—">
+                @if (session('document_status'))
+                    <p role="status">{{ session('document_status') }}</p>
+                @endif
+
+                @forelse ($documents as $document)
+                    <article class="document-card">
+                        <h4>{{ $document->document_type }}</h4>
+                        <dl>
+                            @if ($document->series !== null)
+                                <dt>Серия</dt>
+                                <dd>{{ $document->series }}</dd>
+                            @endif
+                            <dt>Номер</dt>
+                            <dd>{{ $document->number }}</dd>
+                            @if ($document->issued_at)
+                                <dt>Дата выдачи</dt>
+                                <dd>{{ \Illuminate\Support\Carbon::parse($document->issued_at)->format('d.m.Y') }}</dd>
+                            @endif
+                            @if ($document->expires_at)
+                                <dt>Действителен до</dt>
+                                <dd>{{ \Illuminate\Support\Carbon::parse($document->expires_at)->format('d.m.Y') }}</dd>
+                            @endif
+                        </dl>
+                        <div class="document-actions">
+                            <a href="{{ route('documents.edit', $document->document_id) }}">Редактировать</a>
+                            <a href="{{ route('documents.confirm-delete', $document->document_id) }}">Удалить</a>
                         </div>
-                        <div class="form-field">
-                            <label>Пол</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Дата рождения</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Гражданство</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Номер и серия</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                        <div class="form-field">
-                            <label>Срок действия</label>
-                            <input type="text" placeholder="—">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </article>
+                @empty
+                    <p>У тебя пока нет сохранённых документов.</p>
+                @endforelse
+            </section>
         </div>
     </section>
 
