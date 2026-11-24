@@ -12,4 +12,10 @@
             <span>{{ $label }}</span>
         </a>
     @endforeach
+    @can('manage-catalog')
+        <a class="account-tab" href="{{ route('admin.tours.index') }}">
+            <img src="{{ asset('images/plan.png') }}" alt="" class="account-tab-icon">
+            <span>Управление турами</span>
+        </a>
+    @endcan
 </nav>

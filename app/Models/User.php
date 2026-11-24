@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     public const CUSTOMER_ROLE = 1;
+    public const ADMIN_ROLE = 2;
 
     protected $primaryKey = 'user_id';
 

@@ -1,5 +1,5 @@
 <article class="tour-card">
-    <img src="{{ asset($tour->image_url) }}" alt="{{ $tour->title }}" class="tour-image" loading="lazy">
+    <img src="{{ asset($tour->image_url) }}" alt="{{ $tour->title }}" class="tour-image" loading="lazy" referrerpolicy="no-referrer">
     <div class="tour-content">
         <div class="tour-header">
             <div class="tour-info-left">

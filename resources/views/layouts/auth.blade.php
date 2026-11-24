@@ -45,7 +45,7 @@
     </div>
 
     <section class="auth-section">
-        <div class="auth-container">
+        <div class="auth-container @yield('container-class')">
             <div class="auth-box">
                 <h1 class="auth-title">@yield('heading')</h1>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminTourController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DocumentController;
@@ -60,4 +61,15 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     });
     Route::view('/logout.html', 'logout')->name('logout');
     Route::post('/logout.html', [AuthController::class, 'logout'])->name('logout.submit');
+
+    Route::middleware('can:manage-catalog')->prefix('admin/tours')->name('admin.tours.')
+        ->controller(AdminTourController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/new', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{tourId}/edit', 'edit')->whereNumber('tourId')->name('edit');
+            Route::patch('/{tourId}', 'update')->whereNumber('tourId')->name('update');
+            Route::get('/{tourId}/archive', 'confirmArchive')->whereNumber('tourId')->name('confirm-archive');
+            Route::delete('/{tourId}', 'archive')->whereNumber('tourId')->name('archive');
+        });
 });
