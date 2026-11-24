@@ -47,24 +47,7 @@
     <section class="section personal-account-section">
         <h2 class="section-title">Документы</h2>
         
-        <div class="account-tabs">
-            <a href="personal-account.html" class="account-tab">
-                <img src="images/plan.png" alt="Мои туры" class="account-tab-icon">
-                <span>Мои туры</span>
-            </a>
-            <a href="documents.html" class="account-tab active">
-                <img src="images/kopi.png" alt="Документы" class="account-tab-icon">
-                <span>Документы</span>
-            </a>
-            <a href="favorites.html" class="account-tab">
-                <img src="images/izbrannoe.png" alt="Избранное" class="account-tab-icon">
-                <span>Избранное</span>
-            </a>
-            <a href="logout.html" class="account-tab">
-                <img src="images/vihod.png" alt="Выйти" class="account-tab-icon">
-                <span>Выйти</span>
-            </a>
-        </div>
+        @include('account-tabs')
 
         <div class="documents-content">
             <div class="profile-section">
@@ -72,21 +55,18 @@
                 
                 <div class="contact-field">
                     <div class="contact-field-row">
-                        <label class="contact-label">Телефон</label>
-                        <div class="contact-value">+7(913) 833-72-28</div>
+                        <span class="contact-label">Телефон</span>
+                        <div class="contact-value">{{ auth()->user()->phone }}</div>
                     </div>
                     <p class="contact-hint">Для бронирования и оперативной связи по вопросам брони</p>
                 </div>
 
                 <div class="contact-field">
                     <div class="contact-field-row">
-                        <label class="contact-label">Email</label>
-                        <div class="email-input-group">
-                            <input type="email" placeholder="Укажите email" class="email-input">
-                            <button type="button" class="add-button">Добавить</button>
-                        </div>
+                        <span class="contact-label">Электронная почта</span>
+                        <div class="contact-value">{{ auth()->user()->email }}</div>
                     </div>
-                    <p class="contact-hint">Для получения уведомлений</p>
+                    <p class="contact-hint"><a href="{{ route('profile.edit') }}">Изменить контактные данные</a></p>
                 </div>
             </div>
 

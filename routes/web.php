@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourCatalogController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::get('/personal-account.html', [BookingController::class, 'index'])->name('account');
+    Route::get('/profile.html', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile.html', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/tours/{tourId}/booking', [BookingController::class, 'create'])
         ->whereNumber('tourId')->name('bookings.create');
     Route::post('/tours/{tourId}/booking', [BookingController::class, 'store'])
@@ -44,7 +47,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         ->whereNumber('tourId')->name('favorites.store');
     Route::delete('/favorites/{tourId}', [FavoriteController::class, 'destroy'])
         ->whereNumber('tourId')->name('favorites.destroy');
-    Route::view('/documents.html', 'documents');
+    Route::view('/documents.html', 'documents')->name('documents');
     Route::view('/logout.html', 'logout')->name('logout');
     Route::post('/logout.html', [AuthController::class, 'logout'])->name('logout.submit');
 });

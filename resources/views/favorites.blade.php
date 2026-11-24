@@ -48,24 +48,7 @@
     <section class="section personal-account-section">
         <h2 class="section-title">Избранное</h2>
         
-        <div class="account-tabs">
-            <a href="personal-account.html" class="account-tab">
-                <img src="images/plan.png" alt="Мои туры" class="account-tab-icon">
-                <span>Мои туры</span>
-            </a>
-            <a href="documents.html" class="account-tab">
-                <img src="images/kopi.png" alt="Документы" class="account-tab-icon">
-                <span>Документы</span>
-            </a>
-            <a href="favorites.html" class="account-tab active">
-                <img src="images/izbrannoe.png" alt="Избранное" class="account-tab-icon">
-                <span>Избранное</span>
-            </a>
-            <a href="logout.html" class="account-tab">
-                <img src="images/vihod.png" alt="Выйти" class="account-tab-icon">
-                <span>Выйти</span>
-            </a>
-        </div>
+        @include('account-tabs')
 
         <div class="catalog-search">
             @include('catalog.favorite-status')
