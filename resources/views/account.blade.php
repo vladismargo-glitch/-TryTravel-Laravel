@@ -68,7 +68,7 @@
                             <summary>
                                 <strong>{{ $booking->title }}</strong>
                                 <span>Заявка №{{ $booking->booking_id }} от {{ \Illuminate\Support\Carbon::parse($booking->created_at)->format('d.m.Y') }}</span>
-                                <span>{{ $booking->checking ? 'Подтверждена' : 'Ожидает подтверждения' }}</span>
+                                <span>@include('bookings.status')</span>
                             </summary>
                             <div>
                                 <p>{{ $booking->country }}, {{ $booking->destination }}</p>

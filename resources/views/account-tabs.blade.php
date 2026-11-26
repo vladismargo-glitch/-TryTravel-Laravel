@@ -18,4 +18,10 @@
             <span>Управление турами</span>
         </a>
     @endcan
+    @can('manage-bookings')
+        <a class="account-tab" href="{{ route('admin.bookings.index') }}">
+            <img src="{{ asset('images/plan.png') }}" alt="" class="account-tab-icon">
+            <span>Заявки</span>
+        </a>
+    @endcan
 </nav>

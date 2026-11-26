@@ -3,19 +3,19 @@
 .auth-input[aria-invalid="true"] { border-color: #a12525; }
 .booking-summary { margin: 16px 0; text-align: left; }
 .booking-summary dt { margin-top: 8px; font-weight: 600; }
-.booking-summary dd { margin: 0; }
+.booking-summary dd { margin: 0; overflow-wrap: anywhere; }
 
-.auth-container.admin-tour-container { max-width: 780px; }
+.auth-container.admin-container { max-width: 780px; }
 .admin-tour-fields {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
     gap: 16px;
 }
-.admin-tour-list { list-style: none; padding: 0; margin: 16px 0; }
-.admin-tour-list li { padding: 16px 0; border-top: 1px solid #e0e0e0; overflow-wrap: anywhere; }
-.admin-tour-list h2 { font-size: 18px; margin: 0 0 6px; }
-.admin-tour-list p { margin: 0 0 8px; }
-.admin-tour-links, .admin-tour-container .tours-pagination {
+.admin-list { list-style: none; padding: 0; margin: 16px 0; }
+.admin-list li { padding: 16px 0; border-top: 1px solid #e0e0e0; overflow-wrap: anywhere; }
+.admin-list h2 { font-size: 18px; margin: 0 0 6px; }
+.admin-list p { margin: 0 0 8px; }
+.admin-links, .admin-container .tours-pagination {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 20px;

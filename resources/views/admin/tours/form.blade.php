@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('heading', $tour ? 'Редактирование тура' : 'Добавление тура')
-@section('container-class', 'admin-tour-container')
+@section('container-class', 'admin-container')
 
 @section('content')
     <form class="auth-form" method="post"

@@ -18,7 +18,7 @@ class BookingController extends Controller
             ->where('bookings.user_id', $request->user()->getKey())
             ->select('bookings.booking_id', 'bookings.checking', 'bookings.created_at',
                 'tours.title', 'tours.departure_city', 'tours.departure_date', 'tours.nights',
-                'tours.meal_plan', 'destinations.country', 'destinations.name as destination')
+                'tours.meal_plan', 'tours.archived_at', 'destinations.country', 'destinations.name as destination')
             ->orderByDesc('bookings.created_at')
             ->orderByDesc('bookings.booking_id')
             ->paginate(12);
