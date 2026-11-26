@@ -1,7 +1,6 @@
-@extends('layouts.auth')
+@extends('layouts.admin')
 
 @section('heading', $tour ? 'Редактирование тура' : 'Добавление тура')
-@section('container-class', 'admin-container')
 
 @section('content')
     <form class="auth-form" method="post"
@@ -49,6 +48,21 @@
                 </div>
             @endforeach
         </div>
+
+        <fieldset class="promotion-tour-options admin-guest-options">
+            <legend class="auth-label">Состав туристов для поиска</legend>
+            <div class="admin-tour-fields">
+                @foreach (['max_adults' => ['Максимум взрослых', 1], 'max_children' => ['Максимум детей', 0]] as $field => [$label, $min])
+                    @php($value = old($field, $tour?->{$field}))
+                    <div class="auth-group">
+                        <label class="auth-label" for="{{ $field }}">{{ $label }}</label>
+                        <input class="auth-input" type="number" id="{{ $field }}" name="{{ $field }}" min="{{ $min }}" max="255"
+                            value="{{ is_scalar($value) ? $value : '' }}" @if ($errors->has($field)) aria-invalid="true" @endif>
+                    </div>
+                @endforeach
+            </div>
+            <small>Оставь оба поля пустыми, если состав туристов для этого тура ещё неизвестен.</small>
+        </fieldset>
 
         @php($image = old('image_url', $tour?->image_url))
         <div class="auth-group">

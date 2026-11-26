@@ -24,4 +24,10 @@
             <span>Заявки</span>
         </a>
     @endcan
+    @can('manage-promotions')
+        <a class="account-tab" href="{{ route('admin.promotions.index') }}">
+            <img src="{{ asset('images/plan.png') }}" alt="" class="account-tab-icon">
+            <span>Управление акциями</span>
+        </a>
+    @endcan
 </nav>

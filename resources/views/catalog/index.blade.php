@@ -30,6 +30,7 @@
     <nav class="navbar">
         <div class="nav-content">
             <ul class="nav-links">
+                <li><a href="{{ route('tours.index') }}" @if ($section === 'all') class="catalog-nav-current" aria-current="page" @endif>Каталог туров</a></li>
                 <li><a href="hot-tours.html" @if ($section === 'hot') class="catalog-nav-current" aria-current="page" @endif>Горящие туры</a></li>
                 <li><a href="promotions.html">Акции</a></li>
                 <li><a href="newyear-tours.html" @if ($section === 'newyear') class="catalog-nav-current" aria-current="page" @endif>Новогодние туры</a></li>
@@ -67,12 +68,27 @@
                         @endforeach
                     </select>
                     <button type="submit" class="tour-select-btn">Применить</button>
-                    @if ($search !== '' || $sort !== '')
+                    @if ($hasFilters || $sort !== '' || $scope !== 'all')
                         <a href="{{ $searchUrl }}">Сбросить</a>
                     @endif
                 </div>
+                <div class="catalog-search-fields catalog-search-filters">
+                    <select name="scope" aria-label="Тип поиска">
+                        @foreach ($scopeOptions as $value => $label)
+                            <option value="{{ $value }}" @selected($scope === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    <label>Вылет от <input type="date" name="departure_from" value="{{ $filters['departure_from'] ?? '' }}"></label>
+                    <label>Вылет до <input type="date" name="departure_to" value="{{ $filters['departure_to'] ?? '' }}"></label>
+                    <select name="guests" aria-label="Состав туристов">
+                        <option value="">Любой состав</option>
+                        @foreach ($guestOptions as $value => $label)
+                            <option value="{{ $value }}" @selected(($filters['guests'] ?? '') === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </form>
-            @if ($search !== '')
+            @if ($hasFilters)
                 <p class="catalog-result-count">Найдено предложений: {{ $tours->total() }}</p>
             @endif
         </section>
@@ -81,7 +97,7 @@
             @forelse ($tours as $tour)
                 @include('catalog.card', ['tour' => $tour])
             @empty
-                <p class="catalog-empty">{{ $search !== '' ? 'По этому запросу туры не найдены.' : 'Здесь пока нет туров.' }}</p>
+                <p class="catalog-empty">{{ $hasFilters ? 'По этому запросу туры не найдены.' : 'Здесь пока нет туров.' }}</p>
             @endforelse
         </div>
 

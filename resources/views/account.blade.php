@@ -29,6 +29,7 @@
     <nav class="navbar">
         <div class="nav-content">
             <ul class="nav-links">
+                <li><a href="{{ route('tours.index') }}">Каталог туров</a></li>
                 <li><a href="hot-tours.html">Горящие туры</a></li>
                 <li><a href="promotions.html">Акции</a></li>
                 <li><a href="newyear-tours.html">Новогодние туры</a></li>
@@ -57,7 +58,7 @@
             <div class="account-empty-state">
                 <div class="empty-state-box">
                     <p class="empty-state-text">У вас пока нет заявок на бронирование</p>
-                    <a href="{{ route('tours.index') }}">Перейти в каталог</a>
+                    <a class="catalog-entry-button" href="{{ route('tours.index') }}">Перейти в каталог</a>
                 </div>
             </div>
         @else

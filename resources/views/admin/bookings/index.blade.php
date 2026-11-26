@@ -1,27 +1,21 @@
-@extends('layouts.auth')
+@extends('layouts.admin')
 
 @section('heading', 'Заявки на бронирование')
-@section('container-class', 'admin-container')
 
 @section('content')
-    <div class="admin-links">
-        <a class="auth-link" href="{{ route('account') }}">Личный кабинет</a>
-        <a class="auth-link" href="{{ route('admin.tours.index') }}">Управление турами</a>
-    </div>
     <ul class="admin-list">
         @forelse ($bookings as $booking)
-            <li>
-                <h2>
-                    <a class="auth-link" href="{{ route('admin.bookings.show', $booking->booking_id) }}">
-                        №{{ $booking->booking_id }} · {{ $booking->title }}
-                    </a>
-                </h2>
-                <p>{{ $booking->first_name }} {{ $booking->last_name }} ·
-                    {{ \Illuminate\Support\Carbon::parse($booking->created_at)->format('d.m.Y') }}</p>
-                <p>@include('bookings.status')</p>
+            <li class="admin-row">
+                <div class="admin-row-info">
+                    <h2>№{{ $booking->booking_id }} · {{ $booking->title }}</h2>
+                    <p>{{ $booking->first_name }} {{ $booking->last_name }} ·
+                        {{ \Illuminate\Support\Carbon::parse($booking->created_at)->format('d.m.Y') }}</p>
+                </div>
+                @include('bookings.status', ['asBadge' => true])
+                <a class="admin-button" href="{{ route('admin.bookings.show', $booking->booking_id) }}">Открыть заявку</a>
             </li>
         @empty
-            <li>Заявок пока нет.</li>
+            <li class="admin-empty">Заявок пока нет.</li>
         @endforelse
     </ul>
 

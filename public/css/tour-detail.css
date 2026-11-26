@@ -1,0 +1,65 @@
+.auth-container.tour-detail-container { max-width: 1040px; }
+
+.tour-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    font-style: normal;
+}
+
+.tour-detail-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.tour-detail-info { min-width: 0; overflow-wrap: anywhere; }
+.tour-detail-location { font-size: 18px; font-weight: 700; }
+
+.tour-detail-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    margin: 12px 0;
+    padding: 12px;
+    background: #f5f7fa;
+    border-radius: 8px;
+}
+
+.tour-detail-facts dt { color: #556574; font-size: 13px; }
+.tour-detail-facts dd { margin: 0; }
+.tour-detail-price { margin-bottom: 8px; font-size: 28px; font-weight: 700; }
+.tour-detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+.tour-detail-book {
+    padding: 9px 14px;
+    border-radius: 6px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.tour-detail-book:hover { background: #555; }
+.tour-detail-book:focus-visible { outline: 2px solid #174b80; outline-offset: 2px; }
+
+.tour-detail-section {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+    font-style: normal;
+    overflow-wrap: anywhere;
+}
+
+.tour-detail-section h2 { margin-bottom: 8px; font-family: 'Philosopher', serif; font-size: 22px; }
+.tour-detail-copy { white-space: pre-wrap; }
+.tour-detail-list { list-style: none; padding: 0; }
+.tour-detail-list li { margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: #f5f7fa; }
+
+@media (max-width: 680px) {
+    .tour-detail { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}

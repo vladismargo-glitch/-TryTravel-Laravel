@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <link rel="stylesheet" href="{{ asset('css/trytravel-auth.css') }}">
+    @stack('styles')
 </head>
 <body>
     <div class="top-bar">
@@ -30,6 +31,7 @@
     <nav class="navbar">
         <div class="nav-content">
             <ul class="nav-links">
+                <li><a href="{{ route('tours.index') }}">Каталог туров</a></li>
                 <li><a href="{{ url('hot-tours.html') }}">Горящие туры</a></li>
                 <li><a href="{{ url('promotions.html') }}">Акции</a></li>
                 <li><a href="{{ url('newyear-tours.html') }}">Новогодние туры</a></li>
@@ -47,6 +49,7 @@
     <section class="auth-section">
         <div class="auth-container @yield('container-class')">
             <div class="auth-box">
+                @yield('before-heading')
                 <h1 class="auth-title">@yield('heading')</h1>
 
                 @if ($errors->any())

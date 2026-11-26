@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminBookingController;
+use App\Http\Controllers\AdminPromotionController;
 use App\Http\Controllers\AdminTourController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
@@ -8,12 +9,15 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\TourCatalogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect('/index.html'))->name('home');
+Route::get('/promotions.html', [PromotionController::class, 'index'])->name('promotions.index');
 Route::middleware('auth.session')->group(function () {
     Route::get('/tours.html', [TourCatalogController::class, 'index'])->name('tours.index');
+    Route::get('/tours/{tourId}', [TourCatalogController::class, 'show'])->whereNumber('tourId')->name('tours.show');
     Route::get('/hot-tours.html', [TourCatalogController::class, 'index'])
         ->defaults('section', 'hot')->name('tours.hot');
     Route::get('/newyear-tours.html', [TourCatalogController::class, 'index'])
@@ -80,5 +84,16 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::patch('/{tourId}', 'update')->whereNumber('tourId')->name('update');
             Route::get('/{tourId}/archive', 'confirmArchive')->whereNumber('tourId')->name('confirm-archive');
             Route::delete('/{tourId}', 'archive')->whereNumber('tourId')->name('archive');
+        });
+
+    Route::middleware('can:manage-promotions')->prefix('admin/promotions')->name('admin.promotions.')
+        ->controller(AdminPromotionController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/new', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{promotionId}/edit', 'edit')->whereNumber('promotionId')->name('edit');
+            Route::patch('/{promotionId}', 'update')->whereNumber('promotionId')->name('update');
+            Route::get('/{promotionId}/delete', 'confirmDelete')->whereNumber('promotionId')->name('confirm-delete');
+            Route::delete('/{promotionId}', 'destroy')->whereNumber('promotionId')->name('destroy');
         });
 });

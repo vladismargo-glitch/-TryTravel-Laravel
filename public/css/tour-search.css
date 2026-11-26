@@ -37,12 +37,26 @@
 
 .catalog-rating { margin: 0 0 8px; font-size: 14px; }
 .catalog-search-fields .tour-select-btn { width: auto; margin: 0; }
-.catalog-search a, .tours-pagination a, .catalog-description summary { color: #174b80; }
+.catalog-search-filters { align-items: end; margin-top: 10px; }
+.catalog-search-filters label { margin: 0; font-size: 14px; }
+.catalog-search-filters label input { display: block; width: auto; }
+.catalog-search a { color: #174b80; }
 .catalog-result-count { margin-top: 10px; }
 .catalog-empty { padding: 26px 0; }
-.catalog-description { margin-top: 14px; }
-.catalog-description summary { cursor: pointer; }
-.catalog-description p { margin-top: 8px; }
+.tour-details-link {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 12px;
+    border: 1px solid #b7c5d4;
+    border-radius: 6px;
+    color: #174b80;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    text-decoration: none;
+}
+.tour-details-link:hover { background: #e3f2fd; }
+.tour-details-link:focus-visible { outline: 2px solid #174b80; outline-offset: 2px; }
 
 .favorite-button {
     display: inline-flex;

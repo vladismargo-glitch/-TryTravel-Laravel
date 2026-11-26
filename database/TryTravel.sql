@@ -89,6 +89,15 @@ CREATE TABLE IF NOT EXISTS tours (
     CONSTRAINT ck_tours_price CHECK (price >= 0)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS tour_guest_limits (
+    tour_id BIGINT UNSIGNED PRIMARY KEY,
+    max_adults TINYINT UNSIGNED NOT NULL,
+    max_children TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT fk_guest_limits_tour FOREIGN KEY (tour_id)
+        REFERENCES tours (tour_id) ON DELETE CASCADE,
+    CONSTRAINT ck_guest_limits_adults CHECK (max_adults > 0)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS bookings (
     booking_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,

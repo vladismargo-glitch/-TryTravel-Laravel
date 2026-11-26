@@ -30,6 +30,7 @@
     <nav class="navbar">
         <div class="nav-content">
             <ul class="nav-links">
+                <li><a href="{{ route('tours.index') }}">Каталог туров</a></li>
                 <li><a href="hot-tours.html">Горящие туры</a></li>
                 <li><a href="promotions.html">Акции</a></li>
                 <li><a href="newyear-tours.html">Новогодние туры</a></li>

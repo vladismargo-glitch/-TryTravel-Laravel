@@ -13,5 +13,6 @@ class AppServiceProvider extends ServiceProvider
         $isAdmin = fn (User $user): bool => (int) $user->role_id === User::ADMIN_ROLE;
         Gate::define('manage-catalog', $isAdmin);
         Gate::define('manage-bookings', $isAdmin);
+        Gate::define('manage-promotions', $isAdmin);
     }
 }

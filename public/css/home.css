@@ -70,7 +70,7 @@
     font-style: italic;
 }
 
-.search-tab.active {
+.search-tab:has(input:checked) {
     color: white;
     background: #333;
     border-bottom: none;
@@ -79,15 +79,44 @@
     font-style: italic;
 }
 
-.search-tab:hover:not(.active) {
+.search-tab:hover {
     color: white;
 }
 
+.search-tab input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.search-tab:has(input:focus-visible) { outline: 2px solid #174b80; outline-offset: 2px; }
+
 .search-form {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
+    grid-template-columns: minmax(0, 1.4fr) minmax(250px, 1.3fr) minmax(0, 1fr) auto;
     gap: 15px;
     align-items: end;
+}
+
+.search-dates {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.search-dates label { color: #fff; font-size: 13px; }
+.search-dates input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    color-scheme: dark;
+    font: inherit;
 }
 
 .form-group {
@@ -654,10 +683,4 @@
         font-size: 30px;
     }
 
-}
-
-
-.search-form.tour-home-search { grid-template-columns: minmax(0, 1fr) auto; }
-@media (max-width: 540px) {
-    .search-form.tour-home-search { grid-template-columns: 1fr; }
 }

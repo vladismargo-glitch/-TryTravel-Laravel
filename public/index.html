@@ -29,6 +29,7 @@
     <nav class="navbar">
         <div class="nav-content">
             <ul class="nav-links">
+                <li><a href="tours.html">Каталог туров</a></li>
                 <li><a href="hot-tours.html">Горящие туры</a></li>
                 <li><a href="promotions.html">Акции</a></li>
                 <li><a href="newyear-tours.html">Новогодние туры</a></li>
@@ -43,15 +44,33 @@
         <div class="hero-wrapper">
             <div class="hero-content">
                 <h1>Открой мир премиум путешествий</h1>
-                <div class="search-container">
-                    <form class="search-form tour-home-search" action="tours.html" method="get" role="search">
+                <form action="tours.html" method="get" role="search">
+                    <div class="search-tabs" role="group" aria-label="Поиск по разделу">
+                        <label class="search-tab"><input type="radio" name="scope" value="hotel">Отели</label>
+                        <label class="search-tab"><input type="radio" name="scope" value="destination">Путешествия</label>
+                        <label class="search-tab"><input type="radio" name="scope" value="all" checked>Туры</label>
+                    </div>
+                    <div class="search-container search-form">
                         <div class="form-group">
                             <input type="search" name="q" maxlength="100" aria-label="Название тура, курорт или страна"
                                 placeholder="Название тура, курорт или страна">
                         </div>
-                        <button type="submit" class="search-btn">Найти тур</button>
-                    </form>
-                </div>
+                        <div class="search-dates" role="group" aria-label="Период вылета">
+                            <label>Вылет от <input type="date" name="departure_from"></label>
+                            <label>Вылет до <input type="date" name="departure_to"></label>
+                        </div>
+                        <div class="form-group">
+                            <select name="guests" aria-label="Состав туристов">
+                                <option value="">Любой состав</option>
+                                <option value="1-0">1 взрослый</option>
+                                <option value="2-0">2 взрослых</option>
+                                <option value="2-1">2 взрослых и 1 ребёнок</option>
+                                <option value="2-2">2 взрослых и 2 ребёнка</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="search-btn">Найти</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

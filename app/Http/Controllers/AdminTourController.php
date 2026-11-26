@@ -37,7 +37,8 @@ class AdminTourController extends Controller
         $data = $this->validateTour($request);
 
         DB::transaction(function () use ($data): void {
-            DB::table('tours')->insert($this->tourAttributes($data));
+            $tourId = DB::table('tours')->insertGetId($this->tourAttributes($data), 'tour_id');
+            $this->saveGuestLimits($tourId, $data);
         }, 3);
 
         return to_route('admin.tours.index', [], 303)->with('status', 'Тур добавлен.');
@@ -59,6 +60,7 @@ class AdminTourController extends Controller
             abort_if($tour === null, 404);
 
             DB::table('tours')->where('tour_id', $tour->tour_id)->update($this->tourAttributes($data));
+            $this->saveGuestLimits($tour->tour_id, $data);
         }, 3);
 
         return to_route('admin.tours.index', [], 303)->with('status', 'Изменения сохранены.');
@@ -82,8 +84,10 @@ class AdminTourController extends Controller
     {
         $tour = DB::table('tours')
             ->join('destinations', 'destinations.destination_id', '=', 'tours.destination_id')
+            ->leftJoin('tour_guest_limits', 'tour_guest_limits.tour_id', '=', 'tours.tour_id')
             ->where('tours.tour_id', $tourId)->whereNull('tours.archived_at')
-            ->first(['tours.*', 'destinations.country', 'destinations.name as destination']);
+            ->first(['tours.*', 'destinations.country', 'destinations.name as destination',
+                'tour_guest_limits.max_adults', 'tour_guest_limits.max_children']);
         abort_if($tour === null, 404);
 
         return $tour;
@@ -117,6 +121,8 @@ class AdminTourController extends Controller
                 }
             }],
             'description' => ['nullable', 'string', 'max:10000'],
+            'max_adults' => ['nullable', 'required_with:max_children', 'integer', 'between:1,255'],
+            'max_children' => ['nullable', 'required_with:max_adults', 'integer', 'between:0,255'],
         ], [
             'required' => 'Заполни поле «:attribute».',
             'string' => 'Проверь поле «:attribute».',
@@ -128,6 +134,9 @@ class AdminTourController extends Controller
             'nights.integer' => 'Укажи количество ночей целым числом.',
             'nights.between' => 'Количество ночей должно быть от :min до :max.',
             'price.regex' => 'Укажи цену числом от 0 до 9 999 999 999,99, с точностью до копеек.',
+            'required_with' => 'Укажи оба ограничения по составу туристов.',
+            'max_adults.between' => 'Укажи число взрослых от :min до :max.',
+            'max_children.between' => 'Укажи число детей от :min до :max.',
         ], [
             'title' => 'Название тура',
             'category_id' => 'Категория',
@@ -162,11 +171,31 @@ class AdminTourController extends Controller
         $destinationId = (clone $destinations)->where($location)->lockForUpdate()->value('destination_id')
             ?? $destinations->insertGetId($location, 'destination_id');
 
-        unset($data['country'], $data['destination']);
+        unset($data['country'], $data['destination'], $data['max_adults'], $data['max_children']);
         $data['destination_id'] = $destinationId;
         $data['price'] = str_replace(',', '.', $data['price']);
         $data['description'] ??= '';
 
         return $data;
+    }
+
+    private function saveGuestLimits(int|string $tourId, array $data): void
+    {
+        if (! array_key_exists('max_adults', $data) && ! array_key_exists('max_children', $data)) {
+            return;
+        }
+
+        $limits = DB::table('tour_guest_limits');
+        if (! isset($data['max_adults'])) {
+            $limits->where('tour_id', $tourId)->delete();
+
+            return;
+        }
+
+        $limits->upsert([[
+            'tour_id' => $tourId,
+            'max_adults' => $data['max_adults'],
+            'max_children' => $data['max_children'],
+        ]], ['tour_id'], ['max_adults', 'max_children']);
     }
 }

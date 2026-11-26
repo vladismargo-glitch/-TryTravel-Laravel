@@ -1,5 +1,5 @@
 <article class="tour-card">
-    <img src="{{ asset($tour->image_url) }}" alt="{{ $tour->title }}" class="tour-image" loading="lazy" referrerpolicy="no-referrer">
+    <img src="{{ asset($tour->image_url) }}" alt="" class="tour-image" loading="lazy" referrerpolicy="no-referrer">
     <div class="tour-content">
         <div class="tour-header">
             <div class="tour-info-left">
@@ -22,11 +22,8 @@
                     <span><img src="{{ asset('images/image 203.png') }}" alt="" class="departure-icon">Ночей: {{ $tour->nights }}</span>
                     <span><img src="{{ asset('images/Eda.png') }}" alt="" class="departure-icon">{{ $tour->meal_plan }}</span>
                 </div>
-                @if ($tour->description !== '')
-                    <details class="catalog-description">
-                        <summary>Подробнее о туре</summary>
-                        <p>{{ $tour->description }}</p>
-                    </details>
+                @if (! $tour->archived_at)
+                    <a class="tour-details-link" href="{{ route('tours.show', $tour->tour_id) }}">Подробнее о туре</a>
                 @endif
             </div>
             <div class="tour-pricing">
@@ -39,17 +36,7 @@
                         Оформить заявку
                     </a>
                 @endif
-                <form class="favorite-form" method="post"
-                    action="{{ route($tour->is_favorite ? 'favorites.destroy' : 'favorites.store', ['tourId' => $tour->tour_id]) }}">
-                    @csrf
-                    @if ($tour->is_favorite)
-                        @method('DELETE')
-                    @endif
-                    <button type="submit" class="favorite-button{{ $tour->is_favorite ? ' is-saved' : '' }}">
-                        <span aria-hidden="true">{{ $tour->is_favorite ? '♥' : '♡' }}</span>
-                        {{ $tour->is_favorite ? 'Убрать из избранного' : 'В избранное' }}
-                    </button>
-                </form>
+                @include('catalog.favorite-button')
             </div>
         </div>
     </div>
