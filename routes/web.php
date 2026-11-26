@@ -12,6 +12,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\TourCatalogController;
+use App\Http\Controllers\TourReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect('/index.html'))->name('home');
@@ -50,6 +51,10 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         ->whereNumber('tourId')->name('bookings.create');
     Route::post('/tours/{tourId}/booking', [BookingController::class, 'store'])
         ->whereNumber('tourId')->name('bookings.store');
+    Route::get('/tours/{tourId}/review', [TourReviewController::class, 'create'])
+        ->whereNumber('tourId')->name('reviews.create');
+    Route::post('/tours/{tourId}/review', [TourReviewController::class, 'store'])
+        ->whereNumber('tourId')->name('reviews.store');
     Route::get('/favorites.html', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites/{tourId}', [FavoriteController::class, 'store'])
         ->whereNumber('tourId')->name('favorites.store');

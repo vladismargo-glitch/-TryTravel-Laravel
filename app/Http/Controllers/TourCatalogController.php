@@ -44,6 +44,9 @@ class TourCatalogController extends Controller
         $reviews = DB::table('tour_reviews')->where('tour_id', $tour->tour_id)->where('status', 'published')
             ->orderByDesc('created_at')->orderByDesc('review_id')->limit(5)->get(['rating', 'content', 'created_at']);
 
+        $ownReview = $userId === null ? null : DB::table('tour_reviews')
+            ->where('tour_id', $tour->tour_id)->where('user_id', $userId)->first(['rating', 'content', 'status']);
+
         $today = today('Asia/Tomsk')->toDateString();
         $promotions = DB::table('promotions')
             ->join('promotion_tours', 'promotion_tours.promotion_id', '=', 'promotions.promotion_id')
@@ -55,6 +58,7 @@ class TourCatalogController extends Controller
             'tour' => $tour,
             'bookable' => TourCards::isBookable($tour),
             'reviews' => $reviews,
+            'ownReview' => $ownReview,
             'promotions' => $promotions,
         ]);
     }

@@ -66,7 +66,7 @@
         </section>
     @endif
 
-    <section class="tour-detail-section">
+    <section class="tour-detail-section" id="reviews">
         <h2>Отзывы</h2>
         @if ($tour->review_count)
             <p><strong>{{ number_format((float) $tour->average_rating, 1, ',', ' ') }} из 5</strong> · отзывов {{ $tour->review_count }}</p>
@@ -84,6 +84,8 @@
         @else
             <p>У этого тура пока нет опубликованных отзывов.</p>
         @endif
+
+        @include('catalog.review-form')
     </section>
 
     <p class="auth-alt-text"><a class="auth-link" href="{{ route('tours.index') }}">В каталог туров</a></p>

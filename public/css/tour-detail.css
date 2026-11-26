@@ -60,6 +60,29 @@
 .tour-detail-list { list-style: none; padding: 0; }
 .tour-detail-list li { margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: #f5f7fa; }
 
+.tour-review-feedback { margin-top: 12px; }
+.tour-review-form {
+    max-width: 640px;
+    margin-top: 16px;
+    padding: 14px;
+    border: 1px solid #dce4ec;
+    border-radius: 8px;
+}
+.tour-review-form h3 { font-size: 18px; }
+.tour-review-form .auth-submit { align-self: flex-start; }
+.tour-review-ratings { display: flex; flex-wrap: wrap; gap: 6px; border: 0; }
+.tour-review-ratings label {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    min-height: 42px;
+    padding: 4px 9px;
+    border: 1px solid #dce4ec;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.tour-review-ratings label:has(input:checked) { border-color: #174b80; background: #e3f2fd; }
+
 @media (max-width: 680px) {
     .tour-detail { grid-template-columns: minmax(0, 1fr); gap: 16px; }
 }
