@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\AdminPromotionController;
+use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminTourController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
@@ -95,5 +96,14 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::patch('/{promotionId}', 'update')->whereNumber('promotionId')->name('update');
             Route::get('/{promotionId}/delete', 'confirmDelete')->whereNumber('promotionId')->name('confirm-delete');
             Route::delete('/{promotionId}', 'destroy')->whereNumber('promotionId')->name('destroy');
+        });
+
+    Route::middleware(['can:manage-roles', 'cache.headers:private;no_store'])
+        ->prefix('admin/users')->name('admin.users.')->controller(AdminRoleController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{userId}/role', 'edit')->whereNumber('userId')->name('role.edit');
+            Route::patch('/{userId}/role', 'update')->whereNumber('userId')
+                ->middleware('throttle:10,1,trytravel-role-change')->name('role.update');
         });
 });

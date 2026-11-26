@@ -20,6 +20,10 @@
             <a href="{{ route('admin.promotions.index') }}"
                 @if (request()->routeIs('admin.promotions.*')) aria-current="true" @endif>Акции</a>
         @endcan
+        @can('manage-roles')
+            <a href="{{ route('admin.users.index') }}"
+                @if (request()->routeIs('admin.users.*')) aria-current="true" @endif>Пользователи</a>
+        @endcan
         <a class="admin-nav-account" href="{{ route('account') }}">Личный кабинет</a>
     </nav>
 @endsection

@@ -30,4 +30,10 @@
             <span>Управление акциями</span>
         </a>
     @endcan
+    @can('manage-roles')
+        <a class="account-tab" href="{{ route('admin.users.index') }}">
+            <img src="{{ asset('images/Profile.png') }}" alt="" class="account-tab-icon">
+            <span>Пользователи</span>
+        </a>
+    @endcan
 </nav>

@@ -14,5 +14,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-catalog', $isAdmin);
         Gate::define('manage-bookings', $isAdmin);
         Gate::define('manage-promotions', $isAdmin);
+        Gate::define('manage-roles', $isAdmin);
     }
 }
