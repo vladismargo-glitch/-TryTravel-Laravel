@@ -81,9 +81,12 @@
 
                     <div class="auth-group">
                         <div class="auth-password-wrap">
-                            <input class="auth-input" type="password" id="reg-password" name="password" placeholder="Пароль" required minlength="8">
+                            <input class="auth-input" type="password" id="reg-password" name="password"
+                                placeholder="Пароль" required minlength="8" pattern="(?=.*\p{L})(?=.*\p{Nd}).{8,}"
+                                autocomplete="new-password" aria-describedby="reg-password-requirement">
                             <button type="button" class="auth-toggle-password" data-toggle="reg-password">Показать</button>
                         </div>
+                        <small id="reg-password-requirement">Не менее 8 символов, включая букву и цифру</small>
                     </div>
 
                     <label class="auth-agree">

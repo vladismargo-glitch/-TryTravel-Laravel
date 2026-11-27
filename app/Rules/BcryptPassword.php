@@ -20,5 +20,9 @@ class BcryptPassword implements ValidationRule
         if (str_contains($value, "\0")) {
             $fail('Пароль содержит недопустимый символ.');
         }
+
+        if (! preg_match('/\p{L}/u', $value) || ! preg_match('/\p{Nd}/u', $value)) {
+            $fail('Пароль должен содержать хотя бы одну букву и одну цифру.');
+        }
     }
 }
