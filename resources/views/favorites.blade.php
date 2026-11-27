@@ -60,7 +60,7 @@
                 <div class="empty-state-box">
                     <p class="empty-state-text">В избранном пока нет туров</p>
                     <p class="empty-state-subtext">Нажмите «В избранное» в карточке понравившегося тура.</p>
-                    <a class="catalog-entry-button" href="{{ route('tours.index') }}">Перейти в каталог</a>
+                    <a class="site-action-button" href="{{ route('tours.index') }}">Перейти в каталог</a>
                 </div>
             </div>
         @else

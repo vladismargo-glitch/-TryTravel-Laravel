@@ -67,14 +67,14 @@
                         <span class="contact-label">Электронная почта</span>
                         <div class="contact-value">{{ auth()->user()->email }}</div>
                     </div>
-                    <p class="contact-hint"><a href="{{ route('profile.edit') }}">Изменить контактные данные</a></p>
+                    <p class="contact-hint"><a class="site-action-button" href="{{ route('profile.edit') }}">Изменить контактные данные</a></p>
                 </div>
             </div>
 
             <section class="document-section">
                 <div class="document-header">
                     <h3 class="profile-section-title">Мои документы</h3>
-                    <a class="add-button" href="{{ route('documents.create') }}">Добавить документ</a>
+                    <a class="site-action-button" href="{{ route('documents.create') }}">Добавить документ</a>
                 </div>
 
                 @if (session('document_status'))

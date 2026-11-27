@@ -58,7 +58,7 @@
             <div class="account-empty-state">
                 <div class="empty-state-box">
                     <p class="empty-state-text">У вас пока нет заявок на бронирование</p>
-                    <a class="catalog-entry-button" href="{{ route('tours.index') }}">Перейти в каталог</a>
+                    <a class="site-action-button" href="{{ route('tours.index') }}">Перейти в каталог</a>
                 </div>
             </div>
         @else
