@@ -97,7 +97,7 @@ class TourCatalogSeeder extends Seeder
                     ->value('category_id');
 
                 if ($categoryId === null) {
-                    throw new \RuntimeException('Сначала импортируйте схему TryTravel с категориями.');
+                    throw new \RuntimeException('Сначала выполните миграции или импортируйте схему TryTravel с категориями.');
                 }
 
                 foreach ($offers as $offer) {
