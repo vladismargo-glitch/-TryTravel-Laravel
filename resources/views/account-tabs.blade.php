@@ -36,4 +36,10 @@
             <span>Пользователи</span>
         </a>
     @endcan
+    @can('moderate-reviews')
+        <a class="account-tab" href="{{ route('admin.reviews.index') }}">
+            <img src="{{ asset('images/Star.png') }}" alt="" class="account-tab-icon">
+            <span>Отзывы</span>
+        </a>
+    @endcan
 </nav>

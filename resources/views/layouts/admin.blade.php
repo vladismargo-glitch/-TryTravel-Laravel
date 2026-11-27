@@ -24,6 +24,10 @@
             <a href="{{ route('admin.users.index') }}"
                 @if (request()->routeIs('admin.users.*')) aria-current="true" @endif>Пользователи</a>
         @endcan
+        @can('moderate-reviews')
+            <a href="{{ route('admin.reviews.index') }}"
+                @if (request()->routeIs('admin.reviews.*')) aria-current="true" @endif>Отзывы</a>
+        @endcan
         <a class="admin-nav-account" href="{{ route('account') }}">Личный кабинет</a>
     </nav>
 @endsection
